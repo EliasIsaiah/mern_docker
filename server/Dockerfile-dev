@@ -1,0 +1,22 @@
+# Select a base image
+# FROM node:20-alpine3.17
+FROM node:20
+
+# Create a directory and go to the directory
+WORKDIR /app
+
+# Open the port for the express server
+EXPOSE 3000
+
+# Copy the package.json file to my current directory to install the necessary
+COPY package*.json /app/
+
+# Install the dependencies
+RUN npm install
+
+# Copy other files to my current directory
+COPY . .
+
+# Run express in the foreground
+# CMD ["npx", "nodemon", "index.js"]
+CMD ["npm", "start"]
