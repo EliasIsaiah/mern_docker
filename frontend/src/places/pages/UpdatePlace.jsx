@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Card from "../../shared/components/UIElements/Card";
 
 import {
   VALIDATOR_REQUIRE,
@@ -27,7 +28,7 @@ const DUMMY_PLACES = [
   },
   {
     id: "p2",
-    title: "Empire state building",
+    title: "Emp state building",
     description: "famous building in new york",
     imageUrl:
       "https://lh5.googleusercontent.com/p/AF1QipMDv3C-fXXvEvttpkkgNG5Rg52BwR4SBaA1w0dR=w408-h270-k-no",
@@ -64,26 +65,30 @@ const UpdatePlace = () => {
 
   const identifiedPlace = DUMMY_PLACES.find((place) => place.id === placeId);
   useEffect(() => {
-    setFormData(
-      {
-        title: {
-          value: identifiedPlace.title,
-          isValid: true,
+    if (identifiedPlace) {
+      setFormData(
+        {
+          title: {
+            value: identifiedPlace.title,
+            isValid: true,
+          },
+          description: {
+            value: identifiedPlace.description,
+            isValid: true,
+          },
         },
-        description: {
-          value: identifiedPlace.description,
-          isValid: true,
-        },
-      },
-      true
-    );
-    setIsLoading(false);
+        true
+      );
+      setIsLoading(false);
+    }
   }, [setFormData, identifiedPlace]);
 
   if (!identifiedPlace) {
     return (
       <div className="center">
-        <h2>Could not find place!</h2>
+        <Card>
+          <h2>Could not find place!</h2>
+        </Card>
       </div>
     );
   }

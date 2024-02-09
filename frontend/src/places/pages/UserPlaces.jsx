@@ -18,7 +18,7 @@ const DUMMY_PLACES = [
   },
   {
     id: "p2",
-    title: "Empire state building",
+    title: "Emp state building",
     description: "famous building in new york",
     imageUrl:
       "https://lh5.googleusercontent.com/p/AF1QipMDv3C-fXXvEvttpkkgNG5Rg52BwR4SBaA1w0dR=w408-h270-k-no",
