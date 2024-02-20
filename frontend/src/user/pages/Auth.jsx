@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Card from "../../shared/components/UIElements/Card";
 import { useForm } from "../../shared/hooks/form-hook";
@@ -11,15 +11,9 @@ import {
 
 import "./Auth.css";
 
-/* auth form:
-* useForm hook
-* user/pages/auth.jsx
-add a form with fields:
-* email --> validate with VALIDATOR_EMAIL
-* password --> validate with VALIDATOR_MIN */
-
 const Auth = () => {
-  const [formState, inputHandler] = useForm(
+  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
         value: "",
@@ -38,14 +32,39 @@ const Auth = () => {
     console.log(formState.inputs);
   };
 
+  const switchModeHandler = () => {
+    if (!isLoginMode) {
+      setFormData(
+        {
+          ...formState.inputs,
+          username: undefined,
+        },
+        formState.inputs.email.isValid && formState.inputs.password.isValid
+      );
+    } else {
+      setFormData(
+        {
+          ...formState.inputs,
+          username: {
+            value: "",
+            isValid: false,
+          },
+        },
+        false
+      );
+    }
+    setIsLoginMode((previousSelection) => !previousSelection);
+  };
+
   return (
     <Card className="authentication">
       <h2>Login Required</h2>
       <hr />
-      <form className="place-form" onSubmit={authSubmitHandler}>
+      <form onSubmit={authSubmitHandler}>
         <Input
           id="email"
           element="input"
+          type="email"
           label="Email"
           validators={[VALIDATOR_EMAIL()]}
           errorText="Please enter a valid email"
@@ -54,13 +73,28 @@ const Auth = () => {
         <Input
           id="password"
           element="input"
+          type="password"
           label="Password"
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText="Please enter a valid password"
           onInput={inputHandler}
         />
+        {!isLoginMode && (
+          <Input
+            id="username"
+            element="input"
+            type="text"
+            label="Username"
+            validators={[VALIDATOR_MINLENGTH(5)]}
+            errorText="Please enter a valid username"
+            onInput={inputHandler}
+          />
+        )}
         <Button type="submit" disabled={!formState.isValid}>
-          LOGIN
+          {isLoginMode ? "LOGIN" : "SIGNUP"}
+        </Button>
+        <Button inverse onClick={switchModeHandler}>
+          SWITCH TO {isLoginMode ? "SIGNUP" : "LOGIN"}
         </Button>
       </form>
     </Card>
