@@ -1,0 +1,16 @@
+{
+    "client": "Thunder Client",
+    "environmentName": "udemy_mern [DEV]",
+    "dateExported": "2024-02-24T20:02:57.158Z",
+    "version": "1.0",
+    "variables": [
+        {
+            "name": "host",
+            "value": "http://localhost"
+        },
+        {
+            "name": "port",
+            "value": "3000"
+        }
+    ]
+}

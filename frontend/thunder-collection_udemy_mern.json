@@ -1,0 +1,68 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "udemy_mern",
+    "dateExported": "2024-02-24T20:02:27.307Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "99deec9c-8b64-422f-8645-613b66a82066",
+            "colId": "46975904-1532-4c3b-89ad-0aa7ab5b938a",
+            "containerId": "",
+            "name": "create place",
+            "url": "{{host}}:{{port}}/api/places/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-24T19:48:34.139Z",
+            "modified": "2024-02-24T19:59:13.393Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"my favorite place\",\n  \"description\": \"this my favorite place\",\n  \"coordinates\": {\n    \"lat\": \"1\",\n    \"lng\": \"2\"\n  },\n  \"address\": \"15 wallaby way, sydney\",\n  \"creator\": \"u4\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5655cec4-ed6f-4ac3-be54-d227ae159585",
+            "colId": "46975904-1532-4c3b-89ad-0aa7ab5b938a",
+            "containerId": "",
+            "name": "get place by id",
+            "url": "{{host}}:{{port}}/api/places/{placeId}",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-24T19:49:04.884Z",
+            "modified": "2024-02-24T19:55:28.397Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "placeId",
+                    "value": "p2",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "0e70d6be-7fe4-4b04-a6fc-c27aa87495d5",
+            "colId": "46975904-1532-4c3b-89ad-0aa7ab5b938a",
+            "containerId": "",
+            "name": "get places by user id",
+            "url": "{{host}}:{{port}}/api/places/user/{useId}",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-02-24T19:49:43.768Z",
+            "modified": "2024-02-24T19:55:41.862Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "useId",
+                    "value": "u1",
+                    "isPath": true
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
