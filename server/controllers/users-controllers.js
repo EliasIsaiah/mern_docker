@@ -28,7 +28,7 @@ const signUp = (req, res, next) => {
 
   let user = DUMMY_USERS.find((user) => user.email === email);
 
-  if (user) return next(new HttpError("user already exists", 400));
+  if (user) return next(new HttpError("email already exists", 422));
 
   user = {
     id: uuid(),
