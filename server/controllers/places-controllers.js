@@ -1,5 +1,6 @@
 const { v4: uuid } = require("uuid");
 const HttpError = require("../models/http-error");
+const { validationResult } = require("express-validator");
 
 let DUMMY_PLACES = [
   {
@@ -60,6 +61,11 @@ const getPlacesByUserId = (req, res, next) => {
 };
 
 const createPlace = (req, res, json) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    throw new HttpError("invalid inputs passed, please check your data.", 422);
+  }
   const { title, description, coordinates, address, creator } = req.body;
   const createdPlace = {
     id: uuid(),
@@ -76,14 +82,18 @@ const createPlace = (req, res, json) => {
 };
 
 const updatePlace = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    throw new HttpError("invalid inputs passed, please check your data.", 422);
+  }
   const { pid: placeId } = req.params;
-  const { title, description, coordinates, address, creator } = req.body;
+  const { title, description, coordinates, address } = req.body;
   const updatedPlace = {
     title,
     description,
     location: coordinates,
     address,
-    creator,
   };
 
   const index = DUMMY_PLACES.findIndex((place) => place.id === placeId);
@@ -100,7 +110,7 @@ const updatePlace = (req, res, next) => {
     description: updatedPlace.description || oldPlace.description,
     location: updatedPlace.location || oldPlace.location,
     address: updatedPlace.address || oldPlace.address,
-    creator: updatedPlace.creator || oldPlace.creator,
+    creator: oldPlace.creator,
   };
 
   res.status(200).json({ place: DUMMY_PLACES[index] });
