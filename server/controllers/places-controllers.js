@@ -1,6 +1,7 @@
 const { v4: uuid } = require("uuid");
 const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
+const Place = require("../models/place");
 
 const getCoordsForAddress = require("../util/location");
 let DUMMY_PLACES = [
@@ -80,16 +81,32 @@ const createPlace = async (req, res, next) => {
   }
   // convert address to coordinates
 
-  const createdPlace = {
-    id: uuid(),
+  const createdPlace = new Place({
     title,
+    address,
     description,
     location: coordinates,
-    address,
+    image:
+      "https://www.allrecipes.com/thmb/-sGgcEhnlIhqr0legC4Q7TPkRhU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/32385-best-lemonade-ever-DDMFS-4x3-8cef7761205e417499c89eb178e5ba2b.jpg",
     creator,
-  };
+  });
 
-  DUMMY_PLACES.push(createdPlace);
+  try {
+    await createdPlace.save();
+  } catch (err) {
+    const error = new HttpError("Creating place failed, please try again", 500);
+    return next(error);
+  }
+  // const createdPlace = {
+  //   id: uuid(),
+  //   title,
+  //   description,
+  //   location: coordinates,
+  //   address,
+  //   creator,
+  // };
+
+  // DUMMY_PLACES.push(createdPlace);
 
   res.status(201).json({ place: createdPlace });
 };

@@ -2,12 +2,13 @@ require("dotenv").config();
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
-const port = process.env.PORT || 3000;
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
 const HttpError = require("./models/http-error");
 
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(bodyParser.json());
@@ -35,6 +36,15 @@ app.get("/test", (req, res) => {
   res.send("hello world!");
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+const MONGO_URI = process.env.MONGO_URI;
+mongoose
+  .connect(MONGO_URI)
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`);
+      console.log(`Mongo connection established! 💻`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
