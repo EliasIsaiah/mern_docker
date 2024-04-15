@@ -4,42 +4,41 @@ const { validationResult } = require("express-validator");
 const Place = require("../models/place");
 
 const getCoordsForAddress = require("../util/location");
-const place = require("../models/place");
-let DUMMY_PLACES = [
-  {
-    id: "p1",
-    title: "empire state building",
-    description: "one of the most famous sky scrapers in the world",
-    location: {
-      lat: 40.7484474,
-      lng: -73.9871516,
-    },
-    address: "20 W 34th St, New York, NY 10001",
-    creator: "u1",
-  },
-  {
-    id: "p2",
-    title: "willis tower",
-    description: "formerly the tallest building in chicago",
-    location: {
-      lat: 41.8788804,
-      lng: -87.6384898,
-    },
-    address: "233 S Wacker Dr, Chicago, IL 60606",
-    creator: "u1",
-  },
-  {
-    id: "p3",
-    title: "JPMorgan Chase McCoy Center",
-    description: "JPMC Corporate office, Columbus, Ohio",
-    location: {
-      lat: 40.1366769,
-      lng: -83.0179706,
-    },
-    address: "1111 Polaris Pkwy, Columbus, OH 43240",
-    creator: "u2",
-  },
-];
+// let DUMMY_PLACES = [
+//   {
+//     id: "p1",
+//     title: "empire state building",
+//     description: "one of the most famous sky scrapers in the world",
+//     location: {
+//       lat: 40.7484474,
+//       lng: -73.9871516,
+//     },
+//     address: "20 W 34th St, New York, NY 10001",
+//     creator: "u1",
+//   },
+//   {
+//     id: "p2",
+//     title: "willis tower",
+//     description: "formerly the tallest building in chicago",
+//     location: {
+//       lat: 41.8788804,
+//       lng: -87.6384898,
+//     },
+//     address: "233 S Wacker Dr, Chicago, IL 60606",
+//     creator: "u1",
+//   },
+//   {
+//     id: "p3",
+//     title: "JPMorgan Chase McCoy Center",
+//     description: "JPMC Corporate office, Columbus, Ohio",
+//     location: {
+//       lat: 40.1366769,
+//       lng: -83.0179706,
+//     },
+//     address: "1111 Polaris Pkwy, Columbus, OH 43240",
+//     creator: "u2",
+//   },
+// ];
 
 const getPlaceById = async (req, res, next) => {
   const placeId = req.params.pid;
