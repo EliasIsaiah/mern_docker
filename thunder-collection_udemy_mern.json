@@ -1,8 +1,9 @@
 {
-    "client": "Thunder Client",
+    "clientName": "Thunder Client",
     "collectionName": "udemy_mern",
-    "dateExported": "2024-02-27T04:36:54.833Z",
-    "version": "1.1",
+    "collectionId": "46975904-1532-4c3b-89ad-0aa7ab5b938a",
+    "dateExported": "2024-05-11T14:19:34.912Z",
+    "version": "1.2",
     "folders": [],
     "requests": [
         {
@@ -14,12 +15,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-02-24T19:48:34.139Z",
-            "modified": "2024-02-24T20:27:51.209Z",
+            "modified": "2024-04-15T00:48:30.836Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"title\": \"belles bread\",\n  \"description\": \"japanese+french bakery\",\n  \"coordinates\": {\n    \"lat\": 40.0505853,\n    \"lng\": -83.0543423\n  },\n  \"address\": \"1168 Kenny Centre Mall, Columbus, OH 43220\",\n  \"creator\": \"u4\"\n}",
+                "raw": "{\n  \"title\": \"target on sawmill\",\n  \"description\": \"this is the targe tin dublin, ohio on sawmill road\",\n  \"address\": \"000 Sawmill Rd Dublin, OH 43017-1626\",\n  \"creator\": \"u4\"\n}",
                 "form": []
             },
             "tests": []
@@ -33,12 +34,12 @@
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-02-24T19:49:04.884Z",
-            "modified": "2024-02-24T21:02:27.039Z",
+            "modified": "2024-04-15T00:40:47.533Z",
             "headers": [],
             "params": [
                 {
                     "name": "placeId",
-                    "value": "p1",
+                    "value": "661594caaa858ff5570a321c",
                     "isPath": true
                 }
             ],
@@ -72,15 +73,26 @@
             "method": "POST",
             "sortNum": 23750,
             "created": "2024-02-27T04:27:01.396Z",
-            "modified": "2024-02-27T04:32:55.515Z",
+            "modified": "2024-05-11T14:18:42.954Z",
             "headers": [],
-            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"ben\",\n  \"secret\": \"benpass\",\n  \"email\":\"ben@ben.com\",\n  \"image\": \"hello.jpg\"\n}",
+                "raw": "{\n  \"name\": \"ben\",\n  \"secret\": \"benpass\",\n  \"email\": \"ben@ben.com\",\n  \"image\": \"{{image}}\",\n  \"places\": \"p1\"\n}",
                 "form": []
             },
-            "tests": []
+            "preReq": {
+                "inlineScripts": [
+                    {
+                        "script": [
+                            "    // example code to load faker-js module\r",
+                            "    const { faker } = await tc.loadModule(\"@faker-js/faker\");\r",
+                            "    const fakeAvatar = faker.image.avatar();\r",
+                            "    console.log(`fakeAvatar retrieved: ${fakeAvatar}`);\r",
+                            "    tc.setVar(\"image\", fakeAvatar);"
+                        ]
+                    }
+                ]
+            }
         },
         {
             "_id": "10c084d7-bea5-4f2b-a26b-99f960d5d0e4",
@@ -91,12 +103,12 @@
             "method": "POST",
             "sortNum": 24375,
             "created": "2024-02-27T04:27:20.504Z",
-            "modified": "2024-02-27T04:36:29.574Z",
+            "modified": "2024-03-06T03:25:30.369Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\":\"elias@elias.com\",\n  \"secret\":\"eliaspass\"\n}",
+                "raw": "{\n  \"email\":\"\",\n  \"secret\":\"eliaspass\"\n}",
                 "form": []
             },
             "tests": []
@@ -110,18 +122,18 @@
             "method": "PATCH",
             "sortNum": 25000,
             "created": "2024-02-24T21:02:32.186Z",
-            "modified": "2024-02-27T03:09:03.906Z",
+            "modified": "2024-04-15T01:48:36.507Z",
             "headers": [],
             "params": [
                 {
                     "name": "placeId",
-                    "value": "p1",
+                    "value": "661c795e2c28fe58d3626f1c",
                     "isPath": true
                 }
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"description\":\"pretty good song\",\n  \"title\":\"empire state of mind\"\n}",
+                "raw": "{\n  \"description\":\"target on sawmill\",\n  \"title\":\"this is the target on sawmill rd\"\n}",
                 "form": []
             },
             "tests": []
@@ -135,12 +147,12 @@
             "method": "GET",
             "sortNum": 30000,
             "created": "2024-02-24T19:49:43.768Z",
-            "modified": "2024-02-27T04:21:33.968Z",
+            "modified": "2024-04-15T00:51:13.447Z",
             "headers": [],
             "params": [
                 {
                     "name": "useId",
-                    "value": "u1",
+                    "value": "u4",
                     "isPath": true
                 }
             ],
@@ -155,16 +167,17 @@
             "method": "DELETE",
             "sortNum": 40000,
             "created": "2024-02-27T02:58:26.286Z",
-            "modified": "2024-02-27T03:01:58.297Z",
+            "modified": "2024-04-15T01:57:00.144Z",
             "headers": [],
             "params": [
                 {
                     "name": "placeId",
-                    "value": "p1",
+                    "value": "661c73a67e126dfaaddb1d3a",
                     "isPath": true
                 }
             ],
             "tests": []
         }
-    ]
+    ],
+    "ref": "aaMjl6MmA-aFgeW0lG1JzjAXhG8wMBlmKbTvVdffBRYQ4bVyhFG6PSglsU_lcyW17In4ZtEZv3u9Hdb5IYMelA"
 }

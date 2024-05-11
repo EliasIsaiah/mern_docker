@@ -33,7 +33,7 @@ const signUp = async (req, res, next) => {
     throw new HttpError("invalid inputs passed, please check your data.", 422);
   }
 
-  const { name, email, image, secret } = req.body;
+  const { name, email, image, secret, places } = req.body;
   let existingUser;
   try {
     existingUser = await User.findOne({ email });
@@ -72,15 +72,29 @@ const signUp = async (req, res, next) => {
   res.status(201).json({ createdUser: user.toObject({ getters: true }) });
 };
 
-const login = (req, res, next) => {
+const login = async (req, res, next) => {
   const { email, secret } = req.body;
+  let user;
 
-  const user = DUMMY_USERS.find(
-    (user) => user.email === email && user.password === secret
-  );
+  try {
+    user = await User.findOne({ email });
+  } catch (err) {
+    const error = new HttpError(
+      "Logging in failed, please try again later",
+      500
+    );
+    return next(error);
+  }
 
-  if (user) return res.status(200).json({ user: user });
-  else return next(new HttpError("username or password is incorrect", 401));
+  if (!user || user.password !== secret) {
+    const error = new HttpError(
+      "Invalid credentials, could not log you in",
+      401
+    );
+    return next(error);
+  }
+
+  return res.status(200).json({ user: user });
 };
 
 exports.getAllUsers = getAllUsers;

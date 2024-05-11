@@ -1,0 +1,22 @@
+{
+    "clientName": "Thunder Client",
+    "environmentName": "udemy_mern [DEV]",
+    "environmentId": "9c207236-c1d7-47a1-9d70-0e7c5dd687ab",
+    "dateExported": "2024-05-11T14:19:45.881Z",
+    "version": "1.2",
+    "variables": [
+        {
+            "name": "host",
+            "value": "http://localhost"
+        },
+        {
+            "name": "port",
+            "value": "3000"
+        },
+        {
+            "name": "image",
+            "value": "https://avatars.githubusercontent.com/u/92063279"
+        }
+    ],
+    "ref": "O60LnCZZ2iJCGqpamzFCUTv4Jqbd0RnlY6-ofoHusIQZNc2urp9I44z7hztXwOqG"
+}
