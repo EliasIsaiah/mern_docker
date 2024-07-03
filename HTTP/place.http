@@ -5,11 +5,12 @@
 POST http://{{HOST}}/api/places/ HTTP/1.1
 Accept: */*
 Content-Type: application/json
+
 {
   "title": "target on sawmill",
   "description": "this is the target in dublin, ohio on sawmill road",
-  "address": "000 Sawmill Rd Dublin, OH 43017-1626",
-  "creator": "u4"
+  "address": "1168 Kenny Centre Mall, Columbus, OH 43220",
+  "creator": "6685d547788deb9b51298535"
 }
 ###
 // get place by id
@@ -20,6 +21,7 @@ Accept: */*
 PATCH http://{{HOST}}/api/places/661c795e2c28fe58d3626f1c HTTP/1.1
 Accept: */*
 Content-Type: application/json
+
 {
   "description":"target on sawmill",
   "title":"this is the target on sawmill rd"

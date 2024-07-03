@@ -1,7 +1,7 @@
 // variables
 @HOST=localhost:3000
 ###
-// create user (sign up)
+// signup (create user)
 POST http://{{HOST}}/api/users/signup HTTP/1.1
 Accept: */*
 Content-Type: application/json
@@ -10,8 +10,7 @@ Content-Type: application/json
   "name": "elias",
   "secret": "eliaspass",
   "email": "elias@elias.com",
-  "image": "https://avatars.githubusercontent.com/u/92063279",
-  "places": "p2"
+  "image": "https://avatars.githubusercontent.com/u/92063279"
 }
 ###
 // login
