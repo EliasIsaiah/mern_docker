@@ -1,0 +1,34 @@
+// variables
+@HOST=localhost:3000
+### 
+// create place
+POST http://{{HOST}}/api/places/ HTTP/1.1
+Accept: */*
+Content-Type: application/json
+{
+  "title": "target on sawmill",
+  "description": "this is the target in dublin, ohio on sawmill road",
+  "address": "000 Sawmill Rd Dublin, OH 43017-1626",
+  "creator": "u4"
+}
+###
+// get place by id
+GET http://{{HOST}}/api/places/661594caaa858ff5570a321c HTTP/1.1
+Accept: */*
+###
+// update place
+PATCH http://{{HOST}}/api/places/661c795e2c28fe58d3626f1c HTTP/1.1
+Accept: */*
+Content-Type: application/json
+{
+  "description":"target on sawmill",
+  "title":"this is the target on sawmill rd"
+}
+###
+// get places by user id
+GET http://{{HOST}}/api/places/user/u4 HTTP/1.1
+Accept: */*
+###
+// delete place
+DELETE http://{{HOST}}/api/places/661c73a67e126dfaaddb1d3a HTTP/1.1
+Accept: */*
