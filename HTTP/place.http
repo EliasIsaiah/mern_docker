@@ -10,7 +10,7 @@ Content-Type: application/json
   "title": "target on sawmill",
   "description": "this is the target in dublin, ohio on sawmill road",
   "address": "1168 Kenny Centre Mall, Columbus, OH 43220",
-  "creator": "6685d547788deb9b51298535"
+  "creator": "6685de14f292f5f7b6ddf6e6"
 }
 ###
 // get place by id
@@ -28,9 +28,9 @@ Content-Type: application/json
 }
 ###
 // get places by user id
-GET http://{{HOST}}/api/places/user/u4 HTTP/1.1
+GET http://{{HOST}}/api/places/user/6685de14f292f5f7b6ddf6e6 HTTP/1.1
 Accept: */*
 ###
 // delete place
-DELETE http://{{HOST}}/api/places/661c73a67e126dfaaddb1d3a HTTP/1.1
+DELETE http://{{HOST}}/api/places/6685de46f292f5f7b6ddf6ea HTTP/1.1
 Accept: */*
