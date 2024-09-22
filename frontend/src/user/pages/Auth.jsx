@@ -4,6 +4,8 @@ import Card from "../../shared/components/UIElements/Card";
 import { useForm } from "../../shared/hooks/form-hook";
 import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_EMAIL,
@@ -16,6 +18,9 @@ const Auth = () => {
   const auth = useContext(AuthContext);
 
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
@@ -30,13 +35,39 @@ const Auth = () => {
     false
   );
 
-  const authSubmitHandler = (event) => {
+  const authSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(formState.inputs);
+
+    if (isLoginMode) {
+    } else {
+      try {
+        setIsLoading(true);
+        const requestBody = {
+          name: formState.inputs.username.value,
+          email: formState.inputs.email.value,
+          secret: formState.inputs.password.value,
+        };
+        const response = await fetch("/api/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        });
+        const responseData = await response.json();
+        console.log("responseData", responseData);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+        setIsLoading(false);
+        setError(err.message || "Something went wrong, please try again");
+      }
+    }
     auth.login();
   };
 
-  const switchModeHandler = () => {
+  const switchModeHandler = (e) => {
+    e.preventDefault();
     if (!isLoginMode) {
       setFormData(
         {
@@ -62,6 +93,7 @@ const Auth = () => {
 
   return (
     <Card className="authentication">
+      {isLoading && <LoadingSpinner asOverlay />}
       <h2>Login Required</h2>
       <hr />
       <form onSubmit={authSubmitHandler}>
